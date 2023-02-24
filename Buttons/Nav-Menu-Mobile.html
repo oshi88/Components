@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <style>
+       .svgCOntainer{
+        width: 100%;
+        height: 98vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+       .innerConatiner{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        cursor: pointer;
+        scale: 0.5 0.5;
+       }
+       .top{
+        transform: translate(100px,0);
+       }
+    </style>
+</head>
+<body style="background-color: rgb(156, 156, 156);">
+    <div class="svgCOntainer">
+        <div class="innerConatiner" value='open'>
+            <svg id="svgID" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" width="200" height="200">
+                <rect width="180" height="15" rx="0" ry="0" transform="translate(10 40)" fill="black" stroke-width="0" style="transition: 
+                all;transition-duration: 0.4s;"/>
+                <rect width="180" height="15" rx="0" ry="0" transform="translate(10 90)" fill="black" stroke-width="0" style="transition: 
+                all;transition-duration: 0.2s;"/>
+                <rect width="180" height="15" rx="0" ry="0" transform="translate(10 140)" fill="black" stroke-width="0" style="transition: 
+                all;transition-duration: 0.4s;"/>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+const btn = document.querySelector('.innerConatiner');
+let isBtnClosed = true;
+const openANDclose = () => {
+    const lines = document.querySelectorAll('#svgID rect');
+    if(isBtnClosed){
+        lines[0].setAttribute('transform','matrix(.707107 0.707107-.707107 0.707107 41.663691 31.057089)');
+        lines[1].setAttribute('opacity','0');
+        lines[2].setAttribute('transform',"matrix(.707107-.707107 0.707107 0.707107 31.057089 158.336309)");
+        isBtnClosed = false;
+    }else{
+        lines[0].setAttribute('transform','translate(10 40)');
+        lines[1].setAttribute('opacity','1');
+        lines[2].setAttribute('transform',"translate(10 140)");
+        isBtnClosed = true;
+    }
+}
+btn.addEventListener('click',openANDclose);
+    </script>
+</body>
+</html>
